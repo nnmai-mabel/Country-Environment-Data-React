@@ -4,15 +4,26 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-//import RegionList from "./components/RegionList"
-//import Home from './routes/Home';
-//import Contact from './routes/Contact';
+import RegionList from "./components/RegionList"
+import Home from './routes/Home';
+import Contact from './routes/Contact';
 //import CardDetail from './components/CardDetail';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<App />}>
+                    <Route path="" element={<Home />} /> {/*route when URL is localhost:[port], order matters */}
+                    <Route path="Home" element={<Home />} />
+                    <Route path="Contact" element={<Contact />} />
+                    <Route path="Regions" element={<RegionList />} />
+                    <Route path="*" element={<Home />} /> {/*route that matches anything */}
+                    {/*<Route path="Products/:itemId" element={<CardDetail />} />*/}
+                </Route>
+            </Routes>
+        </BrowserRouter>
   </React.StrictMode>
 );
 
