@@ -4,10 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import RegionList from "./components/RegionList"
-import Home from './routes/Home';
-import Contact from './routes/Contact';
-import CardDetail from './components/CardDetail';
+//import RegionList from "./components/RegionList"
+//import Home from './routes/Home';
+//import Contact from './routes/Contact';
+//import CardDetail from './components/CardDetail';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
