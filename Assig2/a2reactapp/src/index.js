@@ -21,8 +21,9 @@ root.render(
                     <Route path="Contact" element={<Contact />} />
                     <Route path="Regions" element={<RegionList />} />
                     <Route path="Countries" element={<CountryList />} />
+                    <Route path="Countries/:regionId" element={<CountryList />} />
                     <Route path="*" element={<Home />} /> {/*route that matches anything */}
-                    {/*<Route path="Products/:itemId" element={<CardDetail />} />*/}
+                    
                 </Route>
             </Routes>
         </BrowserRouter>
