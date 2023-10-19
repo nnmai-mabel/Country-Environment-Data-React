@@ -42,6 +42,7 @@ namespace Assig2.Controllers
 
             var region = new RegionDetail();
             var query = _context.Countries.OrderBy(c => c.CountryName).AsQueryable();
+            region.CountryCount = query.Count();
 
             if (regionId > 0)
             {
