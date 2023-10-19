@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import RegionList from "./components/RegionList"
+import CountryList from "./components/CountryList"
 import Home from './routes/Home';
 import Contact from './routes/Contact';
 //import CardDetail from './components/CardDetail';
@@ -19,6 +20,7 @@ root.render(
                     <Route path="Home" element={<Home />} />
                     <Route path="Contact" element={<Contact />} />
                     <Route path="Regions" element={<RegionList />} />
+                    <Route path="Countries" element={<CountryList />} />
                     <Route path="*" element={<Home />} /> {/*route that matches anything */}
                     {/*<Route path="Products/:itemId" element={<CardDetail />} />*/}
                 </Route>
