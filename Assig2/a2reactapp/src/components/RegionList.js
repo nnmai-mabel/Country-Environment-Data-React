@@ -1,14 +1,31 @@
-﻿const RegionList = () => {
+﻿import { useState, useEffect } from 'react'
+import Region from "./Region"
+
+const RegionList = ({ }) => {
+    const [regionData, setState] = useState([]);
+
+    useEffect(() => {
+        fetch("http://localhost:5256/api/A_Regions")
+            .then(response => response.json())
+            .then(data => setState(data))
+            .catch(err => {
+                console.log(err);
+            });
+    }, [])
 
     return (
-        <div className="card col-4 mb-2" style={{ width: 18 + 'em' }}>
-            <img className="card-img-top" src="..." alt={"Image of "} />
-            <div className="card-body">
-                <h5 className="card-title">Card title</h5>
-                <p className="card-text">card description</p>
-                <p className="card-text">another description</p>
-                {/*<Link to={`/Products/${props.itemId}?searchText=${props.searchText}`} className="btn btn-primary">View Detail</Link>*/}
-            </div>
+        <div className="row">
+            {regionData.map((obj) => (
+                <Region
+                    key={obj.regionId}
+                    regionId={obj.regionId}
+                    regionName={obj.regionName}
+                    imageUrl={obj.imageUrl}
+                    countryCount={obj.countryCount}
+                />
+            )
+            )
+            }
         </div>
     )
 }
