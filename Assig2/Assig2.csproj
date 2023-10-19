@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="a2reactapp\components\" />
+    <None Remove="a2reactapp\src\components\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
@@ -44,6 +44,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="a2reactapp\components\" />
+    <Folder Include="a2reactapp\src\components\" />
   </ItemGroup>
 </Project>
