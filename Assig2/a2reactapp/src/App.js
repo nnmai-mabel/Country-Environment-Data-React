@@ -15,7 +15,7 @@ function App() {
                             <Link className="nav-link active" to="/Home">Home</Link>
                             <Link className="nav-link" to="/Contact">Contact</Link>
                             <Link className="nav-link" to="/Regions">Regions</Link>
-                            <Link className="nav-link" to="/Countries">Countries</Link>
+                            <Link className="nav-link" to="/Countries/0">Countries</Link>
                         </div>
                     </div>
                 </div>

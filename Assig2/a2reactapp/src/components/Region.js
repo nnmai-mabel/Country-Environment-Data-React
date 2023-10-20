@@ -8,7 +8,7 @@ const Region = (props) => {
             <div className="card-body">
                 <h5 className="card-title">{props.regionName}</h5>
                 <p className="card-text">Country Count: {props.countryCount }</p>
-                <Link to={`/Countries/${props.regionId}?searchText=${props.searchText}`} className="btn btn-primary">View Countries</Link>
+                <Link to={`/Countries/${props.regionId}`} className="btn btn-primary">View Countries</Link>
             </div>
         </div>
     )
