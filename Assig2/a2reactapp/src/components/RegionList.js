@@ -2,12 +2,12 @@
 import Region from "./Region"
 
 const RegionList = ({ }) => {
-    const [regionData, setState] = useState([]);
+    const [regionData, setRegionData] = useState([]);
 
     useEffect(() => {
         fetch("http://localhost:5256/api/A_Regions")
             .then(response => response.json())
-            .then(data => setState(data))
+            .then(data => setRegionData(data))
             .catch(err => {
                 console.log(err);
             });

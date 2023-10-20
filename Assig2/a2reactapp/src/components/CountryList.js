@@ -8,7 +8,9 @@ const CountryList = ({ }) => {
     const [countryData, setCountryData] = useState([]); // set initial countryData to empty array
     const [regionId, setRegionId] = useState(params.regionId); // set regionId to the URL regionId parameter
 
-    //setRegionId(params.regionId)
+    if (regionId == null) {
+        setRegionId(0);
+    }
 
     {/*data fetched is an object, need to access the key "countryList", which is an array of object, then map to array in return*/ }
     useEffect(() => {
