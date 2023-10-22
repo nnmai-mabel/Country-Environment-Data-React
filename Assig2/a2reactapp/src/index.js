@@ -4,8 +4,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import RegionList from "./components/RegionList"
-import CountryList from "./components/CountryList"
+import RegionList from "./components/RegionList";
+import CountryList from "./components/CountryList";
+import CountryEmissionData from "./components/CountryEmissionData";
 import Home from './routes/Home';
 import Contact from './routes/Contact';
 //import CardDetail from './components/CardDetail';
@@ -22,6 +23,7 @@ root.render(
                     <Route path="Regions" element={<RegionList />} />
                     <Route path="Countries" element={<CountryList />} />
                     <Route path="Countries/:regionId" element={<CountryList />} />
+                    <Route path="CountryEmissionData/:countryId" element={<CountryEmissionData />} />
                     <Route path="*" element={<Home />} /> {/*route that matches anything */}
                     
                 </Route>
