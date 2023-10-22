@@ -9,6 +9,7 @@ import CountryList from "./components/CountryList";
 import CountryEmissionData from "./components/CountryEmissionData";
 import CountryTemperatureData from "./components/CountryTemperatureData";
 import CitySearchAndData from "./components/CitySearchAndData";
+import CityAirQualityData from "./components/CityAirQualityData";
 import Home from './routes/Home';
 import Contact from './routes/Contact';
 //import CardDetail from './components/CardDetail';
@@ -28,6 +29,7 @@ root.render(
                     <Route path="CountryEmissionData/:countryId" element={<CountryEmissionData />} />
                     <Route path="CountryTemperatureData/:countryId" element={<CountryTemperatureData />} />
                     <Route path="CitySearchAndData/:countryId" element={<CitySearchAndData />} />
+                    <Route path="CityAirQualityData/:cityId" element={<CityAirQualityData />} />
                     <Route path="*" element={<Home />} /> {/*route that matches anything */}
                     
                 </Route>

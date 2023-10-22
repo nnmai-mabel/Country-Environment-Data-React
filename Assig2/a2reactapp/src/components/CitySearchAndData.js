@@ -8,7 +8,7 @@ const CitySearchAndData = (props) => {
             <div className="card-body">
                 <h5 className="card-title">Cities list title</h5>
                 <p className="card-text">Cities list text</p>
-                {/*<Link to={`/Products/${props.itemId}?searchText=${props.searchText}`} className="btn btn-primary">View Detail</Link>*/}
+                <Link to={`/CityAirQualityData/${props.cityId}`} className="btn btn-primary">Air Quality</Link>
             </div>
         </div>
     )
