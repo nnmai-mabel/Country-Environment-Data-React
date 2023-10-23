@@ -29,7 +29,7 @@ root.render(
                     <Route path="CountryEmissionData/:countryId" element={<CountryEmissionData />} />
                     <Route path="CountryTemperatureData/:countryId" element={<CountryTemperatureData />} />
                     <Route path="CitySearchAndData/:countryId" element={<CitySearchAndData />} />
-                    <Route path="CityAirQualityData/:cityId" element={<CityAirQualityData />} />
+                    <Route path="CityAirQualityData/:countryId/:cityId" element={<CityAirQualityData />} />
                     <Route path="*" element={<Home />} /> {/*route that matches anything */}
                     
                 </Route>
