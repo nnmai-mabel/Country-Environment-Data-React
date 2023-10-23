@@ -36,42 +36,48 @@ const CountryList = ({ }) => {
     }
 
     return (
-        <div className="row">
-            <div className="bg-success py-1 mb-2">
-                <h2 className="text-center">Countries</h2>
-            </div>
-            <div className="col-3 py-1 mb-2">
-                <Link to={`/Regions`} className="btn btn-warning">Regions</Link>
-            </div>
-
-            <div className="col-3">
-                <input type="text" name="searchText" className="form-control" placeholder="Type your query" />
-            </div>
-            <div className="col text-left">
-                {/*Attach a ReactJS event to the button called “searchQuery” using the ReactJS syntax onClick={searchQuery}*/}
-                <button type="button" className="btn btn-primary" onClick={searchQuery}>Search</button>
-            </div>
-
-            {/*Change object's key and value to array*/}
-
-            {countryData.length > 0 ? (
-                countryData.map((obj) => (
-                    <Country
-                        key={obj.countryId}
-                        countryId={obj.countryId}
-                        countryName={obj.countryName}
-                        iso3={obj.iso3}
-                        imageUrl={obj.imageUrl}
-                        cityCount={obj.cityCount}
-                    />
-                )
-                )
-            ) : (
-                <div className="bg-warning py-1 mb-2">
-                    <h2 className="text-center">No Countries available</h2>
+        <div>
+            <div className="row">
+                <div className="bg-success py-1 mb-2">
+                    <h2 className="text-center">Countries</h2>
                 </div>
-            )}
-        </div>
+            </div>
+            <div>
+                <div className="row py-1 mb-2">
+                    <div className="col-3">
+                        <Link to={`/Regions`} className="btn btn-warning">Regions</Link>
+                    </div>
+                    <div className="col-3">
+                        <input type="text" name="searchText" className="form-control" placeholder="Type your query" />
+                    </div>
+                    <div className="col-2">
+                        {/*Attach a ReactJS event to the button called “searchQuery” using the ReactJS syntax onClick={searchQuery}*/}
+                        <button type="button" className="btn btn-primary" onClick={searchQuery}>Search</button>
+                    </div>
+                </div>
+            </div>
+            <div className="row">
+                {/*Change object's key and value to array*/}
+
+                {countryData.length > 0 ? (
+                    countryData.map((obj) => (
+                        <Country
+                            key={obj.countryId}
+                            countryId={obj.countryId}
+                            countryName={obj.countryName}
+                            iso3={obj.iso3}
+                            imageUrl={obj.imageUrl}
+                            cityCount={obj.cityCount}
+                        />
+                    )
+                    )
+                ) : (
+                    <div className="bg-warning py-1 mb-2">
+                        <h2 className="text-center">No Countries available</h2>
+                    </div>
+                )}
+            </div>
+        </div >
     )
 }
 
