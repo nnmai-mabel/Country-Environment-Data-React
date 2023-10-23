@@ -1,11 +1,12 @@
-﻿import { Link } from "react-router-dom";
+﻿import { Link, useParams } from "react-router-dom";
 
-const CountryTemperatureData = (props) => {
+const CountryTemperatureData = () => {
+    let params = useParams();
 
     return (
         <div>
             <div>
-                <Link to={`/Countries`} className="btn btn-warning">Back to Countries</Link>
+                <Link to={`/CountryList/${params.regionId}`} className="btn btn-warning">Back to Countries</Link>
             </div>
             <div className="card col-4 mb-5" style={{ width: 25 + 'em' }}>
                 <img className="card-img-top" src="..." alt={"Image of "} />

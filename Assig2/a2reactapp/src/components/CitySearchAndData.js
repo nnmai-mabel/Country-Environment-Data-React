@@ -39,7 +39,7 @@ const CitySearchAndData = ({ }) => {
             <div>
                 <div className="row py-1 mb-2">
                     <div className="col-3">
-                        <Link to={`/Countries`} className="btn btn-warning">Back to Countries</Link>
+                        <Link to={`/CountryList/${params.regionId}`} className="btn btn-warning">Back to Countries</Link>
                     </div>
                     <div className="col-3">
                         <input type="text" name="searchText" className="form-control" placeholder="Type your query" />
@@ -62,6 +62,7 @@ const CitySearchAndData = ({ }) => {
                             airQualityYearRange={obj.emissionDataYearRange}
                             recordCount={obj.recordCount}
                             countryId={countryId}
+                            regionId={params.regionId}
                         />
                     )
                     )

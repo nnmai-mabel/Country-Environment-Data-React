@@ -14,8 +14,8 @@ function App() {
                         <div className="navbar-nav">
                             <Link className="nav-link active" to="/Home">Home</Link>
                             <Link className="nav-link" to="/Contact">Contact</Link>
-                            <Link className="nav-link" to="/Regions">Regions</Link>
-                            <Link className="nav-link" to="/Countries">Countries</Link>
+                            <Link className="nav-link" to="/RegionList">Regions</Link>
+                            <Link className="nav-link" to="/CountryList">Countries</Link>
                         </div>
                     </div>
                 </div>

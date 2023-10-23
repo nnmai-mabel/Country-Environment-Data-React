@@ -45,7 +45,7 @@ const CountryList = ({ }) => {
             <div>
                 <div className="row py-1 mb-2">
                     <div className="col-3">
-                        <Link to={`/Regions`} className="btn btn-warning">Regions</Link>
+                        <Link to={`/RegionList`} className="btn btn-warning">Regions</Link>
                     </div>
                     <div className="col-3">
                         <input type="text" name="searchText" className="form-control" placeholder="Type your query" />
@@ -69,7 +69,8 @@ const CountryList = ({ }) => {
                             imageUrl={obj.imageUrl}
                             cityCount={obj.cityCount}
                             emissionDataYearRange={obj.emissionDataYearRange}
-                            temperatureDataYearRange={obj.temperatureDataYearRange }
+                            temperatureDataYearRange={obj.temperatureDataYearRange}
+                            regionId={regionId}
                         />
                     )
                     )

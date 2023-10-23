@@ -11,21 +11,21 @@ const Country = (props) => {
                 <p className="card-text">Temperature Count: {props.temperatureDataYearRange.length}</p>
                 {props.emissionDataYearRange.length > 0 ?
                     (
-                        <Link to={`/CountryEmissionData/${props.countryId}`} className="btn btn-primary">Emission</Link>
+                        <Link to={`/CountryEmissionData/${props.regionId}/${props.countryId}`} className="btn btn-primary">Emission</Link>
                     ) : (
                         <p>No emissions</p>
                     )
                 }
                 {props.temperatureDataYearRange.length > 0 ?
                     (
-                        <Link to={`/CountryTemperatureData/${props.countryId}`} className="btn btn-success">Temperature</Link>
+                        <Link to={`/CountryTemperatureData/${props.regionId}/${props.countryId}`} className="btn btn-success">Temperature</Link>
                     ) : (
                         <p>No temperature</p>
                     )
                 }
                 {props.cityCount > 0 ?
                     (
-                        <Link to={`/CitySearchAndData/${props.countryId}`} className="btn btn-warning">Cities</Link>
+                        <Link to={`/CitySearchAndData/${props.regionId}/${props.countryId}`} className="btn btn-warning">Cities</Link>
                     ) : (
                         <p>No cities</p>
                     )

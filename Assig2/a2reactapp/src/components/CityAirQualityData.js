@@ -7,7 +7,7 @@ const CityAirQualityData = (props) => {
     return (
         <div>
             <div>
-                <Link to={`/CitySearchAndData/${params.countryId}`} className="btn btn-warning">Cities</Link>
+                <Link to={`/CitySearchAndData/${params.regionId}/${params.countryId}`} className="btn btn-warning">Cities</Link>
             </div>
             <div className="card col-4 mb-5" style={{ width: 25 + 'em' }}>
                 <div className="card-body">

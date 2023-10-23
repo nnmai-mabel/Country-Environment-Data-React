@@ -23,13 +23,13 @@ root.render(
                     <Route path="" element={<Home />} /> {/*route when URL is localhost:[port], order matters */}
                     <Route path="Home" element={<Home />} />
                     <Route path="Contact" element={<Contact />} />
-                    <Route path="Regions" element={<RegionList />} />
-                    <Route path="Countries" element={<CountryList />} />
-                    <Route path="Countries/:regionId" element={<CountryList />} />
-                    <Route path="CountryEmissionData/:countryId" element={<CountryEmissionData />} />
-                    <Route path="CountryTemperatureData/:countryId" element={<CountryTemperatureData />} />
-                    <Route path="CitySearchAndData/:countryId" element={<CitySearchAndData />} />
-                    <Route path="CityAirQualityData/:countryId/:cityId" element={<CityAirQualityData />} />
+                    <Route path="RegionList" element={<RegionList />} />
+                    <Route path="CountryList" element={<CountryList />} />
+                    <Route path="CountryList/:regionId" element={<CountryList />} />
+                    <Route path="CountryEmissionData/:regionId/:countryId" element={<CountryEmissionData />} />
+                    <Route path="CountryTemperatureData/:regionId/:countryId" element={<CountryTemperatureData />} />
+                    <Route path="CitySearchAndData/:regionId/:countryId" element={<CitySearchAndData />} />
+                    <Route path="CityAirQualityData/:regionId/:countryId/:cityId" element={<CityAirQualityData />} />
                     <Route path="*" element={<Home />} /> {/*route that matches anything */}
                     
                 </Route>
