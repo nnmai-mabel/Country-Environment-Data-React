@@ -11,8 +11,6 @@ import CountryTemperatureData from "./components/CountryTemperatureData";
 import CitySearchAndData from "./components/CitySearchAndData";
 import CityAirQualityData from "./components/CityAirQualityData";
 import Home from './routes/Home';
-import Contact from './routes/Contact';
-//import CardDetail from './components/CardDetail';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -22,7 +20,6 @@ root.render(
                 <Route path="/" element={<App />}>
                     <Route path="" element={<Home />} /> {/*route when URL is localhost:[port], order matters */}
                     <Route path="Home" element={<Home />} />
-                    <Route path="Contact" element={<Contact />} />
                     <Route path="RegionList" element={<RegionList />} />
                     <Route path="CountryList" element={<CountryList />} />
                     <Route path="CountryList/:regionId" element={<CountryList />} />

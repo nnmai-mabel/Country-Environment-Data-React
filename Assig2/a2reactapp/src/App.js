@@ -13,7 +13,6 @@ function App() {
                     <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div className="navbar-nav">
                             <Link className="nav-link active" to="/Home">Home</Link>
-                            <Link className="nav-link" to="/Contact">Contact</Link>
                             <Link className="nav-link" to="/RegionList">Regions</Link>
                             <Link className="nav-link" to="/CountryList">Countries</Link>
                         </div>
