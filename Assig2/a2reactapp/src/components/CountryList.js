@@ -30,6 +30,11 @@ const CountryList = ({ }) => {
             <div className="bg-success py-1 mb-2">
                 <h2 className="text-center">Countries</h2>
             </div>
+            <div className="col-3 py-1 mb-2">
+                <Link to={`/Regions`} className="btn btn-warning">Regions</Link>
+            </div>
+               
+            
             {/*Change object's key and value to array*/}
             {countryData.map((obj) => (
                 <Country
