@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import CityDetail from "./CityDetail";
 import SummaryAirQualityCell from "./SummaryAirQualityCell";
 import DataStationDetailCell from "./DataStationDetailCell";
+import CityAirQualityCell from "./CityAirQualityCell";
 
 const CityAirQualityData = () => {
 
@@ -11,8 +12,6 @@ const CityAirQualityData = () => {
 
     const [cityDetail, setCityDetail] = useState({});
     const [cityAirQualityData, setCityAirQualityData] = useState([]);
-    const [airQualityData, setAirQualityData] = useState({});
-    const [dataStationDetail, setDataStationDetail] = useState([]);
 
     const cityId = params.cityId;
 
@@ -22,10 +21,6 @@ const CityAirQualityData = () => {
             .then(data => {
                 setCityDetail(data.theCityDetail)
                 setCityAirQualityData(data.theCityAirQualityData)
-                setAirQualityData(data.theCityAirQualityData.theAirQualityData)
-                setDataStationDetail(data.theCityAirQualityData)
-                //console.log("Data station")
-                //console.log(data.theCityAirQualityData)
             })
 
             .catch(err => {
@@ -63,7 +58,6 @@ const CityAirQualityData = () => {
                     </tr>
                 </thead>
                 <tbody>
-
                     {cityAirQualityData.map((obj, index) => (
 
                         <SummaryAirQualityCell
@@ -84,25 +78,65 @@ const CityAirQualityData = () => {
                 </tbody>
             </table>
 
+            <table className="table table-info">
+                <thead>
+
+                    <tr>
+                        <th>Year</th>
+                        <th>Annual Mean</th>
+                        <th>Temporal Coverage 1</th>
+                        <th>Annual Mean PM10</th>
+                        <th>Annual Mean UGM3</th>
+                        <th>Temporal Coverage 2</th>
+                        <th>Annual Mean PM25</th>
+                        <th>Reference</th>
+                        <th>Database Year</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                
+                    {cityAirQualityData.map((obj, index) => (
+                        <CityAirQualityCell
+                            key={index}
+                            cityId={obj.theAirQualityData.cityId}
+                            year={obj.year}
+                            rowId={obj.theAirQualityData.rowId}
+                            annualMean={obj.theAirQualityData.annualMean}
+                            temporalCoverage1={obj.theAirQualityData.temporalCoverage1}
+                            annualMeanPm10={obj.theAirQualityData.annualMeanPm10}
+                            annualMeanUgm3={obj.theAirQualityData.annualMeanUgm3}
+                            temporalCoverage2={obj.theAirQualityData.temporalCoverage2}
+                            annualMeanPm25={obj.theAirQualityData.annualMeanPm25}
+                            reference={obj.theAirQualityData.reference}
+                            dbYear={obj.theAirQualityData.dbYear}
+                            status={obj.theAirQualityData.status }
+                        />
+
+                    )
+                    )}
+                </tbody>
+            </table>
+
             <table className="table table-warning">
                 <thead>
 
                     <tr>
-                    <th>Year</th>
+                        <th>Year</th>
                         <th>Station Type</th>
                         <th>Station Number</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {dataStationDetail.map((stationData, index) => (
+                    {cityAirQualityData.map((stationData, index) => (
                         //console.log(stationData)
                         stationData.dataStationDetail.map((station, i) => (
-                                <DataStationDetailCell
+                            <DataStationDetailCell
                                 key={i}
                                 year={stationData.year}
-                                    stationType={station.stationType}
-                                    stationNumber={station.stationNumber}
-                                />
+                                stationType={station.stationType}
+                                stationNumber={station.stationNumber}
+                            />
                         ))
 
 
