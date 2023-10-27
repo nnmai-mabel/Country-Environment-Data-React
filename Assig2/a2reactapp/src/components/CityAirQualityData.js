@@ -1,6 +1,8 @@
 ﻿import { useState, useEffect } from 'react'
 import { Link, useParams } from "react-router-dom";
 import CityDetail from "./CityDetail";
+import SummaryAirQualityCell from "./SummaryAirQualityCell";
+import DataStationDetailCell from "./DataStationDetailCell";
 
 const CityAirQualityData = () => {
 
@@ -9,6 +11,8 @@ const CityAirQualityData = () => {
 
     const [cityDetail, setCityDetail] = useState({});
     const [cityAirQualityData, setCityAirQualityData] = useState([]);
+    const [airQualityData, setAirQualityData] = useState({});
+    const [dataStationDetail, setDataStationDetail] = useState([]);
 
     const cityId = params.cityId;
 
@@ -18,6 +22,10 @@ const CityAirQualityData = () => {
             .then(data => {
                 setCityDetail(data.theCityDetail)
                 setCityAirQualityData(data.theCityAirQualityData)
+                setAirQualityData(data.theCityAirQualityData.theAirQualityData)
+                setDataStationDetail(data.theCityAirQualityData)
+                //console.log("Data station")
+                //console.log(data.theCityAirQualityData)
             })
 
             .catch(err => {
@@ -37,45 +45,72 @@ const CityAirQualityData = () => {
                 cityName={cityDetail.cityName}
                 countryName={cityDetail.countryName}
                 iso3={cityDetail.iso3}
-                regionName={cityDetail.regionName }
+                regionName={cityDetail.regionName}
             />
 
-            {/*<table className="table table-warning">*/}
-            {/*    <thead>*/}
+            <table className="table table-success">
+                <thead>
 
-            {/*        <tr>*/}
+                    <tr>
 
-            {/*            <th>Year</th>*/}
-            {/*            <th>Unit</th>*/}
-            {/*            <th>Change</th>*/}
-            {/*            <th>Value</th>*/}
-            {/*            <th>Regional Average</th>*/}
-            {/*            <th>Regional Min</th>*/}
-            {/*            <th>Regional Max</th>*/}
-            {/*        </tr>*/}
-            {/*    </thead>*/}
-            {/*    <tbody>*/}
+                        <th>Year</th>
+                        <th>Country PM10 Average</th>
+                        <th>Country PM10 Min</th>
+                        <th>Country PM10 Max</th>
+                        <th>Regional Average</th>
+                        <th>Regional Min</th>
+                        <th>Regional Max</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-            {/*        {countryTemperatureData.map((obj, index) => (*/}
+                    {cityAirQualityData.map((obj, index) => (
 
-            {/*            <CountryTemperatureCell*/}
-            {/*                key={index}*/}
-            {/*                objectId={obj.theCountryTempData.objectId}*/}
-            {/*                year={obj.theCountryTempData.year}*/}
-            {/*                countryId={obj.theCountryTempData.countryId}*/}
-            {/*                unit={obj.theCountryTempData.unit}*/}
-            {/*                change={obj.theCountryTempData.change}*/}
-            {/*                value={obj.theCountryTempData.value}*/}
-            {/*                regionalAvg={obj.regionalAvg != null ? obj.regionalAvg : "N/A"}*/}
-            {/*                regionalMin={obj.regionalMin != null ? obj.regionalMin : "N/A"}*/}
-            {/*                regionalMax={obj.regionalMax != null ? obj.regionalMax : "N/A"}*/}
-            {/*            />*/}
+                        <SummaryAirQualityCell
+                            key={index}
+                            year={obj.year}
+                            countryPM10Avg={obj.countryPM10Avg}
+                            countryPM10Min={obj.countryPM10Min}
+                            countryPM10Max={obj.countryPM10Max}
+                            countryPM25Avg={obj.countryPM25Avg}
+                            countryPM25Min={obj.countryPM25Min}
+                            countryPM25Max={obj.countryPM25Max}
 
-            {/*        )*/}
-            {/*        )}*/}
+                        />
 
-            {/*    </tbody>*/}
-            {/*</table>*/}
+                    )
+                    )}
+
+                </tbody>
+            </table>
+
+            <table className="table table-warning">
+                <thead>
+
+                    <tr>
+                    <th>Year</th>
+                        <th>Station Type</th>
+                        <th>Station Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {dataStationDetail.map((stationData, index) => (
+                        //console.log(stationData)
+                        stationData.dataStationDetail.map((station, i) => (
+                                <DataStationDetailCell
+                                key={i}
+                                year={stationData.year}
+                                    stationType={station.stationType}
+                                    stationNumber={station.stationNumber}
+                                />
+                        ))
+
+
+                    )
+                    )}
+
+                </tbody>
+            </table>
         </div>
     )
 }
