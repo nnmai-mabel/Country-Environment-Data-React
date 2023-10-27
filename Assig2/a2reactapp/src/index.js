@@ -14,7 +14,7 @@ import Home from './routes/Home';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+    <React.StrictMode>
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<App />}>
@@ -28,11 +28,11 @@ root.render(
                     <Route path="CitySearchAndData/:regionId/:countryId" element={<CitySearchAndData />} />
                     <Route path="CityAirQualityData/:regionId/:countryId/:cityId" element={<CityAirQualityData />} />
                     <Route path="*" element={<Home />} /> {/*route that matches anything */}
-                    
+
                 </Route>
             </Routes>
         </BrowserRouter>
-  </React.StrictMode>
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

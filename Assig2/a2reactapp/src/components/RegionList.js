@@ -14,11 +14,11 @@ const RegionList = ({ }) => {
     }, [])
 
     return (
-        <div>
-            <div className="bg-success py-1 mb-2">
+        <div className="container">
+            <div className="bg-success py-1 mb-2 row">
                 <h2 className="text-center">Regions</h2>
             </div>
-            <div className="row">
+            <div className="row justify-content-center">
                 {regionData.map((obj) => (
                     <Region
                         key={obj.regionId}
