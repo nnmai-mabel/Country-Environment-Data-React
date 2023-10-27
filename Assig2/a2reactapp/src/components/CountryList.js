@@ -1,5 +1,5 @@
 ﻿import { useState, useEffect } from 'react'
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import Country from "./Country"
 
 const CountryList = ({ }) => {
@@ -8,7 +8,8 @@ const CountryList = ({ }) => {
     const [countryData, setCountryData] = useState([]); // set initial countryData to empty array
     const [query, setQuery] = useState('');
 
-    //const [regionId, setRegionId] = useState(params.regionId ?? 0); // set regionId to the URL regionId parameter
+    const location = useLocation();
+    const regionData = location.state;
 
     // If use useState() to initialise regionId, the page will keep the state (the value) -> the regionId stays the same
     // after re-rendering. However, if only use a normal variable, the page won't be re-rendered and won't keep the
@@ -29,21 +30,33 @@ const CountryList = ({ }) => {
 
     //Create the searchQuery() function after the useEffect hook to capture the textbox text value then use it to update the query state
     function searchQuery(evt) {
-        // const value = evt.target.value;
         const value = document.querySelector('[name="searchText"]').value;
-        //alert('value: ' + value);
         setQuery(value);
     }
 
     return (
-        <div>
-            <div className="row">
+        <div className="container">
+            {regionData != null ? (
+                <div className="row justify-content-center">
+                    <div className="card bg-dark text-black" style={{ width: 25 + 'rem', padding: 0, margin: 10 }}>
+                        <img src={regionData.regionImageUrl} className="card-img" alt={regionData.regionName} />
+                        <div className="card-img-overlay" style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
+                            <h5 className="card-title">{regionData.regionName}</h5>
+                            <p className="card-text">Number of Countries: {regionData.countryCount}</p>
+                        </div>
+                    </div>
+                </div>
+            ) : (
+                ""
+            )}
+
+            <div className="row justify-content-center">
                 <div className="bg-success py-1 mb-2">
                     <h2 className="text-center">Countries</h2>
                 </div>
             </div>
             <div>
-                <div className="row py-1 mb-2">
+                <div className="row py-1 mb-2 justify-content-center">
                     <div className="col-3">
                         <Link to={`/RegionList`} className="btn btn-warning">Regions</Link>
                     </div>
@@ -56,7 +69,7 @@ const CountryList = ({ }) => {
                     </div>
                 </div>
             </div>
-            <div className="row">
+            <div className="row justify-content-center">
                 {/*Change object's key and value to array*/}
 
                 {countryData.length > 0 ? (
