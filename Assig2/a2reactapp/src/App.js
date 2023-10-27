@@ -19,7 +19,7 @@ function App() {
                     </div>
                 </div>
             </nav>
-            <Outlet/>
+            <Outlet />
         </div>
     );
 }
