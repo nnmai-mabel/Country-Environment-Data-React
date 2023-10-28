@@ -1,9 +1,13 @@
 ﻿import { useState, useEffect } from 'react'
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import CountryTemperatureCell from "./CountryTemperatureCell";
+import RegionCountryData from "./RegionCountryData";
 
 const CountryTemperatureData = () => {
     let params = useParams();
+
+    const location = useLocation()
+    const regionCountryData = location.state
 
     const [countryTemperatureData, setCountryTemperatureData] = useState([]);
     const [countryOverallTemperatureData, setOverallCountryTemperatureData] = useState({});
@@ -30,6 +34,15 @@ const CountryTemperatureData = () => {
                     <h2 className="text-center">Country Temperature Data from {countryOverallTemperatureData.minYear} to {countryOverallTemperatureData.maxYear}</h2>
                 </div>
             </div>
+            <RegionCountryData
+                regionImageUrl={regionCountryData.regionImageUrl}
+                imageUrl={regionCountryData.imageUrl}
+                regionName={regionCountryData.regionName}
+                countryName={regionCountryData.countryName}
+                iso3={regionCountryData.iso3}
+                cityCount={regionCountryData.cityCount}
+                countryCount={regionCountryData.countryCount}
+            />
             <div>
                 <Link to={`/CountryList/${regionId}`} className="btn btn-warning">Back to Countries</Link>
             </div>

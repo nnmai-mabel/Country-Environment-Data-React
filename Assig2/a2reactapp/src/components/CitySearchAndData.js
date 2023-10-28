@@ -1,9 +1,13 @@
 ﻿import { useState, useEffect } from 'react'
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import City from "./City"
+import RegionCountryData from "./RegionCountryData";
 
 const CitySearchAndData = ({ }) => {
     let params = useParams();
+
+    const location = useLocation()
+    const regionCountryData = location.state
 
     const [cityData, setCityData] = useState([]); // set initial cityData to empty array
     const [query, setQuery] = useState('');
@@ -36,6 +40,15 @@ const CitySearchAndData = ({ }) => {
                     <h2 className="text-center">Cities</h2>
                 </div>
             </div>
+            <RegionCountryData
+                regionImageUrl={regionCountryData.regionImageUrl}
+                imageUrl={regionCountryData.imageUrl}
+                regionName={regionCountryData.regionName}
+                countryName={regionCountryData.countryName}
+                iso3={regionCountryData.iso3}
+                cityCount={regionCountryData.cityCount}
+                countryCount={regionCountryData.countryCount}
+            />
             <div>
                 <div className="row py-1 mb-2">
                     <div className="col-3">

@@ -1,10 +1,14 @@
 ﻿import { useState, useEffect } from 'react'
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import SummaryCountryEmissionCell from "./SummaryCountryEmissionCell";
 import CountryEmissionCell from "./CountryEmissionCell";
+import RegionCountryData from "./RegionCountryData";
 
 const CountryEmissionData = () => {
     let params = useParams();
+
+    const location = useLocation()
+    const regionCountryData = location.state
 
     const [summaryCountryEmissionData, setSummaryCountryEmissionData] = useState([]);
     const [countryEmissionData, setCountryEmissionData] = useState([]);
@@ -68,6 +72,17 @@ const CountryEmissionData = () => {
                     <h2 className="text-center">Country Emission Data</h2>
                 </div>
             </div>
+
+            <RegionCountryData
+                regionImageUrl={regionCountryData.regionImageUrl}
+                imageUrl={regionCountryData.imageUrl}
+                regionName={regionCountryData.regionName}
+                countryName={regionCountryData.countryName}
+                iso3={regionCountryData.iso3}
+                cityCount={regionCountryData.cityCount}
+                countryCount={regionCountryData.countryCount}
+            />
+
             <select className="form-select" aria-label="Default select example" value={elementId} onChange={changeElementId} name="selectElement">
                 <option value="selectMenu">Open this select menu</option>
 
@@ -122,6 +137,7 @@ const CountryEmissionData = () => {
                     )}
                 </tbody>
             </table>
+
         </div >
     )
 }

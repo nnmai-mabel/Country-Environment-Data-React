@@ -8,8 +8,10 @@ const CountryList = ({ }) => {
     const [countryData, setCountryData] = useState([]); // set initial countryData to empty array
     const [query, setQuery] = useState('');
 
-    const location = useLocation();
-    const regionData = location.state;
+    //const location = useLocation();
+    //const regionData = location.state;
+
+    const [regionData, setRegionData] = useState({});
 
     // If use useState() to initialise regionId, the page will keep the state (the value) -> the regionId stays the same
     // after re-rendering. However, if only use a normal variable, the page won't be re-rendered and won't keep the
@@ -21,7 +23,11 @@ const CountryList = ({ }) => {
         //setRegionId(regionId);
         fetch(`http://localhost:5256/api/B_Countries/CountryList/${regionId}?searchText=${query}`)
             .then(response => response.json())
-            .then(data => setCountryData(data.countryList))
+            .then(data => {
+                setCountryData(data.countryList)
+                setRegionData(data.theRegion)
+                console.log(data.theRegion)
+            })
             //.then(data => console.log("FEtch"))
             .catch(err => {
                 console.log(err);
@@ -36,25 +42,26 @@ const CountryList = ({ }) => {
 
     return (
         <div className="container">
-            {regionData != null ? (
-                <div className="row justify-content-center">
-                    <div className="card bg-dark text-black" style={{ width: 25 + 'rem', padding: 0, margin: 10 }}>
-                        <img src={regionData.regionImageUrl} className="card-img" alt={regionData.regionName} />
-                        <div className="card-img-overlay" style={{ backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
-                            <h5 className="card-title">{regionData.regionName}</h5>
-                            <p className="card-text">Number of Countries: {regionData.countryCount}</p>
-                        </div>
+            <div className="row justify-content-center">
+                <div className="card bg-dark text-black" style={{ width: 25 + 'rem', padding: 0, margin: 10 }}>
+                    {regionData.imageUrl != null && regionData.imageUrl != "" ? (
+                        <img src={regionData.imageUrl} className="card-img" alt={regionData.regionName} />
+                    ) : (
+                        <img className="card-img" alt={regionData.regionName} src="https://e0.pxfuel.com/wallpapers/1010/550/desktop-wallpaper-light-earth-planet-for-section-%D0%BA%D0%BE%D1%81%D0%BC%D0%BE%D1%81-beautiful-planet-earth.jpg" />
+                    )}
+                    <div className="card-img-overlay" style={{backgroundColor: 'rgba(255, 255, 255, 0.7)' }}>
+                        <h3 className="card-title" style={{marginTop: 70, marginBottom: 20} }>{regionData.regionName}</h3>
+                        <p className="card-text">Number of Countries: {regionData.countryCount}</p>
                     </div>
                 </div>
-            ) : (
-                ""
-            )}
+            </div>
 
             <div className="row justify-content-center">
                 <div className="bg-success py-1 mb-2">
                     <h2 className="text-center">Countries</h2>
                 </div>
             </div>
+
             <div>
                 <div className="row py-1 mb-2 justify-content-center">
                     <div className="col-3">
@@ -83,7 +90,10 @@ const CountryList = ({ }) => {
                             cityCount={obj.cityCount}
                             emissionDataYearRange={obj.emissionDataYearRange}
                             temperatureDataYearRange={obj.temperatureDataYearRange}
-                            regionId={regionId}
+                            regionId={regionData.regionId}
+                            regionImageUrl={regionData.imageUrl}
+                            regionName={regionData.regionName}
+                            countryCount={regionData.countryCount}
                         />
                     )
                     )
