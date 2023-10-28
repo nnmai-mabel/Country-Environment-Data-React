@@ -55,7 +55,7 @@ const CitySearchAndData = ({ }) => {
                         <Link to={`/CountryList/${params.regionId}`} className="btn btn-warning">Back to Countries</Link>
                     </div>
                     <div className="col-3">
-                        <input type="text" name="searchText" className="form-control" placeholder="Type your query" />
+                        <input type="text" name="searchText" className="form-control" placeholder="Search Cities" />
                     </div>
                     <div className="col-2">
                         {/*Attach a ReactJS event to the button called “searchQuery” using the ReactJS syntax onClick={searchQuery}*/}

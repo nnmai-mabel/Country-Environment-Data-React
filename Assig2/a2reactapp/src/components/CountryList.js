@@ -43,14 +43,14 @@ const CountryList = ({ }) => {
     return (
         <div className="container">
             <div className="row justify-content-center">
-                <div className="card bg-dark text-black" style={{ width: 25 + 'rem', padding: 0, margin: 10 }}>
+                <div className="card bg-dark text-black" style={{ width: 25 + 'rem', padding: 0, margin: 10, border: 0, position: 'relative' }}>
                     {regionData.imageUrl != null && regionData.imageUrl != "" ? (
                         <img src={regionData.imageUrl} className="card-img" alt={regionData.regionName} />
                     ) : (
                         <img className="card-img" alt={regionData.regionName} src="https://e0.pxfuel.com/wallpapers/1010/550/desktop-wallpaper-light-earth-planet-for-section-%D0%BA%D0%BE%D1%81%D0%BC%D0%BE%D1%81-beautiful-planet-earth.jpg" />
                     )}
-                    <div className="card-img-overlay" style={{backgroundColor: 'rgba(255, 255, 255, 0.7)' }}>
-                        <h3 className="card-title" style={{marginTop: 70, marginBottom: 20} }>{regionData.regionName}</h3>
+                    <div className="card-img-overlay" style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                        <h2 className="card-title" style={{ marginBottom: 20, color: '#0079a2' }}>{regionData.regionName}</h2>
                         <p className="card-text">Number of Countries: {regionData.countryCount}</p>
                     </div>
                 </div>
@@ -63,12 +63,12 @@ const CountryList = ({ }) => {
             </div>
 
             <div>
-                <div className="row py-1 mb-2 justify-content-center">
-                    <div className="col-3">
+                <div className="row py-1 mb-2 text-left">
+                    <div className="col-3 ml-0">
                         <Link to={`/RegionList`} className="btn btn-warning">Regions</Link>
                     </div>
                     <div className="col-3">
-                        <input type="text" name="searchText" className="form-control" placeholder="Type your query" />
+                        <input type="text" name="searchText" className="form-control" placeholder="Search Countries" />
                     </div>
                     <div className="col-2">
                         {/*Attach a ReactJS event to the button called “searchQuery” using the ReactJS syntax onClick={searchQuery}*/}

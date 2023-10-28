@@ -27,6 +27,7 @@ const CountryTemperatureData = () => {
                 console.log(err);
             });
     }, [countryId])
+
     return (
         <div>
             <div className="row justify-content-center">
