@@ -1,14 +1,17 @@
 ﻿import { useState, useEffect } from 'react'
-import { Link, useParams } from "react-router-dom";
-import CityDetail from "./CityDetail";
+import { Link, useParams, useLocation } from "react-router-dom";
 import SummaryAirQualityCell from "./SummaryAirQualityCell";
 import DataStationDetailCell from "./DataStationDetailCell";
 import CityAirQualityCell from "./CityAirQualityCell";
+import RegionCountryData from "./RegionCountryData";
 
 const CityAirQualityData = () => {
 
     // useParams() to get countryId from url
     let params = useParams();
+
+    const location = useLocation()
+    const regionCountryData = location.state
 
     const [cityDetail, setCityDetail] = useState({});
     const [cityAirQualityData, setCityAirQualityData] = useState([]);
@@ -31,16 +34,18 @@ const CityAirQualityData = () => {
     return (
         <div>
             <div>
-                <Link to={`/CitySearchAndData/${params.regionId}/${params.countryId}`} className="btn btn-warning">Cities</Link>
+                <Link to={`/CitySearchAndData/${params.regionId}/${params.countryId}`} state={regionCountryData} className="btn btn-warning">Cities</Link>
             </div>
-            <CityDetail
-                key={cityDetail.cityId}
+            <RegionCountryData
                 cityId={cityDetail.cityId}
-                imageUrl={cityDetail.imageUrl}
                 cityName={cityDetail.cityName}
-                countryName={cityDetail.countryName}
-                iso3={cityDetail.iso3}
-                regionName={cityDetail.regionName}
+                regionImageUrl={regionCountryData.regionImageUrl}
+                imageUrl={regionCountryData.imageUrl}
+                regionName={regionCountryData.regionName}
+                countryName={regionCountryData.countryName}
+                iso3={regionCountryData.iso3}
+                cityCount={regionCountryData.cityCount}
+                countryCount={regionCountryData.countryCount}
             />
 
             <table className="table table-success">

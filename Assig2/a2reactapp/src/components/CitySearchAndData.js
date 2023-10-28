@@ -76,6 +76,7 @@ const CitySearchAndData = ({ }) => {
                             recordCount={obj.recordCount}
                             countryId={countryId}
                             regionId={params.regionId}
+                            regionCountryData={regionCountryData }
                         />
                     )
                     )
