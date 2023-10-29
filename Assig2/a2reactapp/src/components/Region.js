@@ -1,5 +1,4 @@
 ﻿import { Link } from "react-router-dom";
-import CountryList from "./CountryList";
 
 const Region = (props) => {
     //let regionImage = ""
