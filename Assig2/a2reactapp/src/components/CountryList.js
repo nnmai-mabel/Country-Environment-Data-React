@@ -5,13 +5,9 @@ import Country from "./Country"
 const CountryList = ({ }) => {
     let params = useParams();
 
+    const [regionData, setRegionData] = useState({});
     const [countryData, setCountryData] = useState([]); // set initial countryData to empty array
     const [query, setQuery] = useState('');
-
-    //const location = useLocation();
-    //const regionData = location.state;
-
-    const [regionData, setRegionData] = useState({});
 
     // If use useState() to initialise regionId, the page will keep the state (the value) -> the regionId stays the same
     // after re-rendering. However, if only use a normal variable, the page won't be re-rendered and won't keep the
@@ -28,7 +24,6 @@ const CountryList = ({ }) => {
                 setRegionData(data.theRegion)
                 console.log(data.theRegion)
             })
-            //.then(data => console.log("FEtch"))
             .catch(err => {
                 console.log(err);
             });
@@ -78,7 +73,7 @@ const CountryList = ({ }) => {
             </div>
             <div className="row justify-content-center">
                 {/*Change object's key and value to array*/}
-
+                {/*{countryData.length > 0 && countryData.map((obj))}*/}
                 {countryData.length > 0 ? (
                     countryData.map((obj) => (
                         <Country

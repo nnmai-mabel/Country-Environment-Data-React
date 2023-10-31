@@ -1,5 +1,6 @@
 ﻿import { Link } from "react-router-dom";
 
+//props contains imageUrl, regionName, countryCount, regionId
 const Region = (props) => {
 
     return (
