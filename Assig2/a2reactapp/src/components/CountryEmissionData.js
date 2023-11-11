@@ -1,8 +1,8 @@
 ﻿import { useState, useEffect } from 'react'
 import { Link, useParams, useLocation } from "react-router-dom";
-import SummaryCountryEmissionCell from "./SummaryCountryEmissionCell";
 import CountryEmissionCell from "./CountryEmissionCell";
 import RegionCountryData from "./RegionCountryData";
+import ElementBarChart from "./ElementBarChart";
 
 const CountryEmissionData = () => {
     let params = useParams();
@@ -22,7 +22,7 @@ const CountryEmissionData = () => {
             .then(response => response.json())
             .then(data => {
                 setSummaryCountryEmissionData(data)
-
+                console.log(data);
             })
 
             .catch(err => {
@@ -67,12 +67,16 @@ const CountryEmissionData = () => {
     }
     return (
         <div>
+            
             <div className="row justify-content-center">
                 <div className="bg-success py-1 mb-2">
                     <h2 className="text-center">Country Emission Data</h2>
                 </div>
             </div>
 
+            <div className="row">
+                <Link to={`/CountryList/${params.regionId}`} className="btn btn-warning col-2">Back to Countries</Link>
+            </div>
             <RegionCountryData
                 regionImageUrl={regionCountryData.regionImageUrl}
                 imageUrl={regionCountryData.imageUrl}
@@ -82,41 +86,22 @@ const CountryEmissionData = () => {
                 cityCount={regionCountryData.cityCount}
                 countryCount={regionCountryData.countryCount}
             />
-
-            <select className="form-select" aria-label="Default select example" value={elementId} onChange={changeElementId} name="selectElement">
-                <option value="selectMenu">Open this select menu</option>
-
-                {elementList.map((element) => (
-
-                    <option key={element.elementId} value={element.elementId} >{element.elementName}</option>
-                )
-                )}
-
-            </select>
-
-            <div>
-                <Link to={`/CountryList/${params.regionId}`} className="btn btn-warning">Back to Countries</Link>
+            <div style={{ margin: 0, padding: 0 }}>
+                <ElementBarChart summaryCountryEmissionData={summaryCountryEmissionData} />
             </div>
-            <table className="table table-warning">
-                <thead>
-                    <tr>
-                        <th>Year</th>
-                        <th>Element</th>
-                        <th>Total Value</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {summaryCountryEmissionData.map((obj, index) => (
-                        <SummaryCountryEmissionCell
-                            key={index}
-                            year={obj.year}
-                            element={obj.element}
-                            totalValue={obj.totalValue}
-                        />
+            <div className="row">
+                <select className="form-select" aria-label="Default select example" value={elementId} onChange={changeElementId} name="selectElement" style={{ width: 22 + 'rem', margin: 10 }}>
+                    <option value="selectMenu">Select Element</option>
+
+                    {elementList.map((element) => (
+
+                        <option key={element.elementId} value={element.elementId} >{element.elementName}</option>
                     )
                     )}
-                </tbody>
-            </table>
+
+                </select>
+            </div>
+            
             <table className="table table-info">
                 <thead>
                     <tr>
