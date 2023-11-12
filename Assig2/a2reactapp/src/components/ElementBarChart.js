@@ -72,31 +72,17 @@ const BarChart = (props) => {
                 .attr("x", x(d.element) + x.bandwidth() / data.length * (data.length / 2) * (d.year - data[0].year)) // Multiply with data.length / 2 so that it looks better, since element's name are duplicated, x-axis only shows half of them
 
                 .attr("width", barWidth * (data.length / 2 - 0.5)) // Multiply to get rid of the space because domain is only based on element's name
-                //.attr("y", isNegative ? y(d.totalValue) : y(0))
-                //.attr("height", isNegative ? Math.abs(y(0) - y(d.totalValue)) : Math.abs(y(d.totalValue) - y(0)))
-
-                //.attr("y", y(d.totalValue))
-                //.attr("height", height - y(d.totalValue))
-
-                //.attr("y", isNegative ? y(d.totalValue) : y(0))
-                //.attr("height", isNegative ? Math.abs(y(0) - y(d.totalValue)) : Math.abs(y(d.totalValue) - y(0)))
-
                 .attr("y", y(Math.max(0, d.totalValue)))
-
                 .attr("height", Math.abs(y(d.totalValue) - y(0)))
-
-                //.attr("y", y(d.totalValue))
-                //.attr("height", Math.abs(y(0) - y(d.totalValue)))
-                
                 .attr("fill", color(d.year - data[0].year));
 
             // Bar transition
-            //bar.transition()
-            //    .duration(1000)
-            //    .delay((index + 1) * 200)
-            //    .attr("width", barWidth * (data.length / 2 - 0.5))
-            //    .attr("y", isNegative ? y(d.totalValue) - 10 : y(d.totalValue) + 10)
-            //    .attr("height", height - y(d.totalValue));
+            bar.transition()
+                .duration(1000)
+                .delay((index + 1) * 200)
+                .attr("width", barWidth * (data.length / 2 - 0.5))
+                .attr("y", y(d.totalValue))
+                .attr("height", height - y(d.totalValue));
 
             // Set bar text
             svg.append('text')
