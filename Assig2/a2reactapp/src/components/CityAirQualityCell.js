@@ -1,4 +1,5 @@
-﻿const CityAirQualityCell = (props) => {
+﻿//Show information of each row for city air quality data
+const CityAirQualityCell = (props) => {
     return (
         <tr>
             <td>{props.year}</td>
@@ -10,7 +11,7 @@
             <td>{props.annualMeanPm25}</td>
             <td>{props.reference}</td>
             <td>{props.dbYear}</td>
-            <td>{props.status}</td>
+            <td>{props.status !== null && props.status !== "" ? props.status : "N/A"}</td>
         </tr>
     )
 }

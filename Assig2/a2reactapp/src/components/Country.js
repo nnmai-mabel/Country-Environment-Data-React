@@ -9,6 +9,8 @@ const Country = (props) => {
             <div className="card-body">
                 <h4 className="card-title">{props.countryName} {props.iso3 !== null && props.iso3 !== "" ? `(${props.iso3})` : ""}</h4>
                 <p className="card-text">Number of Cities: {props.cityCount}</p>
+
+                {/*Show data and buttons leading to other pages if data available*/}
                 {props.emissionDataYearRange[0] > 0 ?
                     (
                         <p className="card-text">Emission Year Range: {props.emissionDataYearRange[0]} - {props.emissionDataYearRange[1]}</p>
@@ -25,7 +27,6 @@ const Country = (props) => {
                 }
 
                 {/*pass props through state because the region data are using all properties of the props*/}
-
                 {props.emissionDataYearRange.length > 0 && props.emissionDataYearRange[0] > 0 ?
                     (
                         <Link to={`/CountryEmissionData/${props.regionId}/${props.countryId}`} state={props} className="btn btn-primary" style={{ margin: 5 }}>Emission</Link>
@@ -47,7 +48,6 @@ const Country = (props) => {
                         ""
                     )
                 }
-
             </div>
         </div>
     )

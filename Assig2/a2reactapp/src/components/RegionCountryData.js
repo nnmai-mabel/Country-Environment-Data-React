@@ -1,13 +1,18 @@
-﻿const RegionCountryData = (regionCountryData) => {
+﻿// regionCountryData contain regionImageUrl, regionName, cityName, countryName, iso3, cityCount, countryCount
+const RegionCountryData = (regionCountryData) => {
     return (
         <div className="row justify-content-center">
             <div className="image-container">
+
+                {/*Set default image if null available*/}
                 {regionCountryData.regionImageUrl !== null && regionCountryData.regionImageUrl !== "" ? (
                     <img src={regionCountryData.regionImageUrl} className="card-img" alt={regionCountryData.regionName} />
                 ) : (
                     <img src="https://e0.pxfuel.com/wallpapers/1010/550/desktop-wallpaper-light-earth-planet-for-section-%D0%BA%D0%BE%D1%81%D0%BC%D0%BE%D1%81-beautiful-planet-earth.jpg" className="card-img" alt={regionCountryData.regionName} />
+                )}
 
-                )}                    <div className="text-overlay">
+                {/*Show region and country data*/}
+                <div className="text-overlay">
                     <div className="left-column">
                         {regionCountryData.cityName !== null ? (
                             <h1>{regionCountryData.cityName}</h1>

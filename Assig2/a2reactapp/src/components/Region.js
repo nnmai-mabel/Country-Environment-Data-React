@@ -6,6 +6,7 @@ const Region = (props) => {
     return (
         <div className="card col-3 mb-5 justify-content-center" style={{ width: 25 + 'rem', margin: 10, padding: 0 }}>
 
+        {/*Set a default image if cannot find through properties*/}
             {props.imageUrl !== null && props.imageUrl !== "" ?
                 (
                     <img className="card-img-top" src={props.imageUrl} alt={"Image of " + props.regionName} style={{ height: 16 + 'rem', width: 100 + "%", margin: 0 }} />
@@ -15,6 +16,8 @@ const Region = (props) => {
                     </div>
                 )
             }
+
+            {/*Show region information*/}
             <div className="card-body">
                 <h5 className="card-title">{props.regionName}</h5>
                 <p className="card-text">Country Count: {props.countryCount}</p>

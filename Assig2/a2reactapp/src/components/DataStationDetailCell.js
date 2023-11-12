@@ -1,4 +1,5 @@
-﻿const DataStationDetailCell = (props) => {
+﻿//props contain year, stationType, stationNumber
+const DataStationDetailCell = (props) => {
     return (
         <tr>
             <td>{props.year}</td>

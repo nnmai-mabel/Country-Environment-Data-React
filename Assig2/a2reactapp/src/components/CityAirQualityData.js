@@ -9,15 +9,16 @@ const CityAirQualityData = () => {
 
     // useParams() to get countryId from url
     let params = useParams();
+    const cityId = params.cityId;
 
+    // useLocation() to get the region and country data from the link leading to this page
     const location = useLocation()
     const regionCountryData = location.state
 
     const [cityDetail, setCityDetail] = useState({});
     const [cityAirQualityData, setCityAirQualityData] = useState([]);
 
-    const cityId = params.cityId;
-
+    // Fetch air quality data of each city from the API and update the data
     useEffect(() => {
         fetch(`http://localhost:5256/api/C_Cities/GetAirQualityData/${cityId}`)
             .then(response => response.json())
@@ -25,17 +26,20 @@ const CityAirQualityData = () => {
                 setCityDetail(data.theCityDetail)
                 setCityAirQualityData(data.theCityAirQualityData)
             })
-
             .catch(err => {
                 console.log(err);
             });
-    }, [cityId])
+    }, [cityId]) // [] to stop cylic requests
 
     return (
-        <div>
-            <div>
-                <Link to={`/CitySearchAndData/${params.regionId}/${params.countryId}`} state={regionCountryData} className="btn btn-warning">Cities</Link>
+        <div className="container">
+
+            {/*Link to go back to city list of the same country*/}
+            <div className="row mt-3">
+                <Link to={`/CitySearchAndData/${params.regionId}/${params.countryId}`} state={regionCountryData} className="btn btn-warning col-3">Back to Cities</Link>
             </div>
+
+            {/*Use component to show region and country data on the page*/}
             <RegionCountryData
                 cityId={cityDetail.cityId}
                 cityName={cityDetail.cityName}
@@ -48,11 +52,11 @@ const CityAirQualityData = () => {
                 countryCount={regionCountryData.countryCount}
             />
 
+            {/*Table shows city air quality data summary*/}
+            <h4 className="mt-3 mb-3">City Air Quality Data Summary</h4>
             <table className="table table-success">
                 <thead>
-
                     <tr>
-
                         <th>Year</th>
                         <th>Country PM10 Average</th>
                         <th>Country PM10 Min</th>
@@ -63,8 +67,9 @@ const CityAirQualityData = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {cityAirQualityData.map((obj, index) => (
 
+                    {/*Map through each object to show data*/}
+                    {cityAirQualityData.map((obj, index) => (
                         <SummaryAirQualityCell
                             key={index}
                             year={obj.year}
@@ -74,18 +79,16 @@ const CityAirQualityData = () => {
                             countryPM25Avg={obj.countryPM25Avg}
                             countryPM25Min={obj.countryPM25Min}
                             countryPM25Max={obj.countryPM25Max}
-
                         />
-
                     )
                     )}
-
                 </tbody>
             </table>
 
+            {/*Table shows city air quality data*/}
+            <h4 className="mt-5 mb-3">City Air Quality Data</h4>
             <table className="table table-info">
                 <thead>
-
                     <tr>
                         <th>Year</th>
                         <th>Annual Mean</th>
@@ -100,7 +103,8 @@ const CityAirQualityData = () => {
                     </tr>
                 </thead>
                 <tbody>
-                
+
+                    {/*Map through each object to show data*/}
                     {cityAirQualityData.map((obj, index) => (
                         <CityAirQualityCell
                             key={index}
@@ -115,17 +119,17 @@ const CityAirQualityData = () => {
                             annualMeanPm25={obj.theAirQualityData.annualMeanPm25}
                             reference={obj.theAirQualityData.reference}
                             dbYear={obj.theAirQualityData.dbYear}
-                            status={obj.theAirQualityData.status }
+                            status={obj.theAirQualityData.status}
                         />
-
                     )
                     )}
                 </tbody>
             </table>
 
+            {/*Table shows city air quality data*/}
+            <h4 className="mt-5 mb-3">Station Data</h4>
             <table className="table table-warning">
                 <thead>
-
                     <tr>
                         <th>Year</th>
                         <th>Station Type</th>
@@ -133,8 +137,9 @@ const CityAirQualityData = () => {
                     </tr>
                 </thead>
                 <tbody>
+
+                    {/*Map through each object to show data*/}
                     {cityAirQualityData.map((stationData, index) => (
-                        //console.log(stationData)
                         stationData.dataStationDetail.map((station, i) => (
                             <DataStationDetailCell
                                 key={i}
@@ -143,11 +148,8 @@ const CityAirQualityData = () => {
                                 stationNumber={station.stationNumber}
                             />
                         ))
-
-
                     )
                     )}
-
                 </tbody>
             </table>
         </div>

@@ -196,7 +196,19 @@ h5 {
 
 .bg-success {
     background-color: var(--highland-forest);
-    opacity: 0.85;
+    opacity: 1;
+    color: var(--white);
+}
+
+.bg-info {
+    background-color: var(--ocean-waves);
+    opacity: 1;
+    color: var(--white);
+}
+
+.bg-warning {
+    background-color: var(--golden-ochre);
+    opacity: 1;
     color: var(--white);
 }
 @keyframes App-logo-spin {

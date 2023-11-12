@@ -1,9 +1,11 @@
 ﻿import { useState, useEffect } from 'react'
 import Region from "./Region"
 
+// Create region list component to show a list of regions
 const RegionList = ({ }) => {
     const [regionData, setRegionData] = useState([]);
 
+    //Fetch data from api
     useEffect(() => {
         fetch("http://localhost:5256/api/A_Regions")
             .then(response => response.json())
@@ -19,6 +21,8 @@ const RegionList = ({ }) => {
                 <h2 className="text-center">Regions</h2>
             </div>
             <div className="row justify-content-center">
+
+            {/*Map through each object to get the data and pass through region component*/}
                 {regionData.map((obj) => (
                     <Region
                         key={obj.regionId}

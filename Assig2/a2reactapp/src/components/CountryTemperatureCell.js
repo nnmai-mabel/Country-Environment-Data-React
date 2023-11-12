@@ -1,4 +1,5 @@
-﻿const CountryTemperatureCell = (props) => {
+﻿//props contain year, unit, change, value, regionalAvg, regionalMin, regionalMax
+const CountryTemperatureCell = (props) => {
     return (
         <tr>
             <td>{props.year}</td>

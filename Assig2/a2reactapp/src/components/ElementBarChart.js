@@ -6,21 +6,25 @@ import * as d3 from "d3";
 //https://www.influxdata.com/blog/guide-d3js-react/
 //https://stackoverflow.com/questions/37812922/grouped-category-bar-chart-with-different-groups-in-d3
 //https://gist.github.com/nanu146/f48ffc5ec10270f55c9e1fb3da8b38f0
+
+// props contain summaryCountryEmissionData
 const BarChart = (props) => {
 
     const data = props.summaryCountryEmissionData
     useEffect(() => {
 
+        // Data is null, skip rendering
         if (!data) {
-            return; // Data is null, skip rendering
+            return;
         }
+
+        //Set margin, width, height of svg chart
         const margin = { top: 300, right: 20, bottom: 100, left: 80 };
         const width = 960 - margin.left - margin.right;
         const height = 770 - margin.top - margin.bottom;
 
         const svg = d3
             .select(".bar-chart svg")
-            //.append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
@@ -32,28 +36,14 @@ const BarChart = (props) => {
         const textCoordinate = [- margin.top / 3, - margin.top / 5];
 
         const x = d3.scaleBand().range([0, width]).padding(0.1);
-        //const y = d3.scaleLinear().range([height, 0]);
         const y = d3.scaleLinear().range([height, 0]);
-
 
         x.domain(
             data.map(function (d) {
                 return d.element;
             })
         );
-        //y.domain([
-        //    d3.min(data, function (d) {
-        //        return Math.min(0, d.totalValue);
-        //    }),
-        //    d3.max(data, function (d) {
-        //        return Math.max(0, d.totalValue);
-        //    }),
-        //]);
-        //y.domain([
-        //    data.map(function (d) {
-        //        return d.element;
-        //    })
-        //]);
+        
         y.domain([
             d3.min(data, function (d) {
                 return Math.min(0, d.totalValue);
@@ -62,8 +52,10 @@ const BarChart = (props) => {
                 return Math.max(0, d.totalValue);
             }),
         ]);
+
         // Draw bars for each year
         const barWidth = x.bandwidth() / data.length;
+
         data.forEach((d, index) => {
             const isNegative = d.totalValue < 0;
             const bar = svg
@@ -80,9 +72,7 @@ const BarChart = (props) => {
             svg.append('text')
                 .attr("text-anchor", "middle")
                 .attr("x", x(d.element) + x.bandwidth() / data.length * (data.length / 2) * (d.year - data[0].year) + barWidth * (data.length / 2 - 0.5) / 2)
-                //.attr("y", y(d.totalValue) - 10) // Change whether bar text will appear inside or outside bar, 20 makes it stay inside bar
                 .attr("y", y(Math.max(0, d.totalValue)) - 10)
-
                 .attr('fill', 'black')
                 .style('font-size', '1em')
                 .text(Number(d.totalValue).toFixed(2));
@@ -125,15 +115,14 @@ const BarChart = (props) => {
             .style('font-size', '1.5em')
             .text(`Country Emissions by Element Graph`);
 
-
-        // Clean up the chart 
+        // Remove the chart 
         return () => {
             svg.remove();
         };
     }, [data]);
 
     // Content to be rendered
-    return <div className="bar-chart" ><svg></svg></div>;
+    return <div className="bar-chart"><svg></svg></div>;
 
 };
 
