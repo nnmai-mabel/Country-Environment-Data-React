@@ -35,6 +35,9 @@ const CountryTemperatureData = () => {
                     <h2 className="text-center">Country Temperature Data from {countryOverallTemperatureData.minYear} to {countryOverallTemperatureData.maxYear}</h2>
                 </div>
             </div>
+            <div className="row">
+                <Link to={`/CountryList/${regionId}`} className="btn btn-warning col-2">Back to Countries</Link>
+            </div>
             <RegionCountryData
                 regionImageUrl={regionCountryData.regionImageUrl}
                 imageUrl={regionCountryData.imageUrl}
@@ -44,9 +47,7 @@ const CountryTemperatureData = () => {
                 cityCount={regionCountryData.cityCount}
                 countryCount={regionCountryData.countryCount}
             />
-            <div>
-                <Link to={`/CountryList/${regionId}`} className="btn btn-warning">Back to Countries</Link>
-            </div>
+            
             {/*<div className="row justify-content-center">*/}
             <div>
 

@@ -1,5 +1,5 @@
 ﻿import { useState, useEffect } from 'react'
-import { Link, useParams, useLocation } from "react-router-dom";
+import { Link, useParams} from "react-router-dom";
 import Country from "./Country"
 
 const CountryList = ({ }) => {
@@ -39,7 +39,7 @@ const CountryList = ({ }) => {
         <div className="container">
             <div className="row justify-content-center">
                 <div className="card bg-dark text-black" style={{ width: 25 + 'rem', padding: 0, margin: 10, border: 0, position: 'relative' }}>
-                    {regionData.imageUrl != null && regionData.imageUrl != "" ? (
+                    {regionData.imageUrl !== null && regionData.imageUrl !== "" ? (
                         <img src={regionData.imageUrl} className="card-img" alt={regionData.regionName} />
                     ) : (
                         <img className="card-img" alt={regionData.regionName} src="https://e0.pxfuel.com/wallpapers/1010/550/desktop-wallpaper-light-earth-planet-for-section-%D0%BA%D0%BE%D1%81%D0%BC%D0%BE%D1%81-beautiful-planet-earth.jpg" />
@@ -58,22 +58,21 @@ const CountryList = ({ }) => {
             </div>
 
             <div>
-                <div className="row py-1 mb-2 text-left">
-                    <div className="col-3 ml-0">
+                <div className="row py-1 mb-2">
+                    <div className="col-md-3 ml-0 mb-2 text-start">
                         <Link to={`/RegionList`} className="btn btn-warning">Regions</Link>
                     </div>
-                    <div className="col-3">
+                    <div className="col-md-5 mb-2">
                         <input type="text" name="searchText" className="form-control" placeholder="Search Countries" />
                     </div>
-                    <div className="col-2">
+                    <div className="col-md-2 mb-2">
                         {/*Attach a ReactJS event to the button called “searchQuery” using the ReactJS syntax onClick={searchQuery}*/}
                         <button type="button" className="btn btn-primary" onClick={searchQuery}>Search</button>
                     </div>
                 </div>
             </div>
             <div className="row justify-content-center">
-                {/*Change object's key and value to array*/}
-                {/*{countryData.length > 0 && countryData.map((obj))}*/}
+                
                 {countryData.length > 0 ? (
                     countryData.map((obj) => (
                         <Country

@@ -27,6 +27,26 @@
 .App-link {
   color: #61dafb;
 }
+:root {
+    --ocean-waves: rgb(0, 121, 162);
+    --surfers-paradise: rgb(113, 215, 229);
+    --golden-ochre: rgb(216, 169, 63);
+    --delicate-pink: rgb(246, 229, 203);
+    --highland-forest: rgb(75, 110, 80);
+    --black: rgb(0,0,0);
+    --white: rgb(255,255,255);
+}
+h1 {
+    color: var(--ocean-waves);
+}
+
+h3 {
+    color: var(--surfers-paradise);
+}
+
+h5 {
+    color: var(--highland-forest);
+}
 
 .image-container {
     position: relative;
@@ -108,6 +128,77 @@
         height: auto;
     }
 
+/*Button style*/
+/*Ocean Waves*/
+.btn-primary {
+    background-color: var(--ocean-waves);
+    opacity: 0.85;
+    color: var(--white);
+}
+
+    .btn-primary:hover {
+        background-color: var(--ocean-waves);
+        opacity: 1;
+        color: var(--white);
+    }
+
+/*Surfers Paradise*/
+.btn-info {
+    background-color: var(--surfers-paradise);
+    opacity: 0.85;
+    color: var(--black);
+}
+
+    .btn-info:hover {
+        background-color: var(--surfers-paradise);
+        opacity: 1;
+        color: var(--black);
+    }
+
+/*Golden Ochre*/
+.btn-warning {
+    background-color: var(--golden-ochre);
+    opacity: 0.85;
+    color: var(--white);
+}
+
+    .btn-warning:hover {
+        background-color: var(--golden-ochre);
+        opacity: 1;
+        color: var(--white);
+    }
+
+/*Delicate Pink*/
+.btn-light {
+    background-color: var(--delicate-pink);
+    opacity: 0.85;
+    color: var(--black);
+}
+
+    .btn-light:hover {
+        background-color: var(--delicate-pink);
+        opacity: 1;
+        color: var(--black);
+    }
+
+/*Highland forest color*/
+.btn-success {
+    background-color: var(--highland-forest);
+    opacity: 0.85;
+    color: var(--white);
+}
+
+    .btn-success:hover {
+        background-color: var(--highland-forest);
+        opacity: 1;
+        color: var(--white);
+    }
+
+.bg-success {
+    background-color: var(--highland-forest);
+    opacity: 0.85;
+    color: var(--white);
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

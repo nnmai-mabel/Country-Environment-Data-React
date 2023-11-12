@@ -32,47 +32,79 @@ const BarChart = (props) => {
         const textCoordinate = [- margin.top / 3, - margin.top / 5];
 
         const x = d3.scaleBand().range([0, width]).padding(0.1);
+        //const y = d3.scaleLinear().range([height, 0]);
         const y = d3.scaleLinear().range([height, 0]);
+
 
         x.domain(
             data.map(function (d) {
                 return d.element;
             })
         );
+        //y.domain([
+        //    d3.min(data, function (d) {
+        //        return Math.min(0, d.totalValue);
+        //    }),
+        //    d3.max(data, function (d) {
+        //        return Math.max(0, d.totalValue);
+        //    }),
+        //]);
+        //y.domain([
+        //    data.map(function (d) {
+        //        return d.element;
+        //    })
+        //]);
         y.domain([
-            0,
+            d3.min(data, function (d) {
+                return Math.min(0, d.totalValue);
+            }),
             d3.max(data, function (d) {
-                return d.totalValue;
+                return Math.max(0, d.totalValue);
             }),
         ]);
-
         // Draw bars for each year
         const barWidth = x.bandwidth() / data.length;
         data.forEach((d, index) => {
-
+            const isNegative = d.totalValue < 0;
             const bar = svg
                 .append("rect")
                 .attr("class", "bar")
                 .attr("x", x(d.element) + x.bandwidth() / data.length * (data.length / 2) * (d.year - data[0].year)) // Multiply with data.length / 2 so that it looks better, since element's name are duplicated, x-axis only shows half of them
 
                 .attr("width", barWidth * (data.length / 2 - 0.5)) // Multiply to get rid of the space because domain is only based on element's name
-                .attr("y", y(d.totalValue))
-                .attr("height", height - y(d.totalValue))
+                //.attr("y", isNegative ? y(d.totalValue) : y(0))
+                //.attr("height", isNegative ? Math.abs(y(0) - y(d.totalValue)) : Math.abs(y(d.totalValue) - y(0)))
+
+                //.attr("y", y(d.totalValue))
+                //.attr("height", height - y(d.totalValue))
+
+                //.attr("y", isNegative ? y(d.totalValue) : y(0))
+                //.attr("height", isNegative ? Math.abs(y(0) - y(d.totalValue)) : Math.abs(y(d.totalValue) - y(0)))
+
+                .attr("y", y(Math.max(0, d.totalValue)))
+
+                .attr("height", Math.abs(y(d.totalValue) - y(0)))
+
+                //.attr("y", y(d.totalValue))
+                //.attr("height", Math.abs(y(0) - y(d.totalValue)))
+                
                 .attr("fill", color(d.year - data[0].year));
 
             // Bar transition
-            bar.transition()
-                .duration(1000)
-                .delay((index + 1) * 200)
-                .attr("width", barWidth * (data.length / 2 - 0.5))
-                .attr("y", y(d.totalValue))
-                .attr("height", height - y(d.totalValue));
+            //bar.transition()
+            //    .duration(1000)
+            //    .delay((index + 1) * 200)
+            //    .attr("width", barWidth * (data.length / 2 - 0.5))
+            //    .attr("y", isNegative ? y(d.totalValue) - 10 : y(d.totalValue) + 10)
+            //    .attr("height", height - y(d.totalValue));
 
             // Set bar text
             svg.append('text')
                 .attr("text-anchor", "middle")
                 .attr("x", x(d.element) + x.bandwidth() / data.length * (data.length / 2) * (d.year - data[0].year) + barWidth * (data.length / 2 - 0.5) / 2)
-                .attr("y", y(d.totalValue) - 10) // Change whether bar text will appear inside or outside bar, 20 makes it stay inside bar
+                //.attr("y", y(d.totalValue) - 10) // Change whether bar text will appear inside or outside bar, 20 makes it stay inside bar
+                .attr("y", y(Math.max(0, d.totalValue)) - 10)
+
                 .attr('fill', 'black')
                 .style('font-size', '1em')
                 .text(Number(d.totalValue).toFixed(2));
@@ -97,7 +129,7 @@ const BarChart = (props) => {
         // Set size for element on x axis
         svg
             .append("g")
-            .attr("transform", "translate(0," + height + ")")
+            .attr("transform", "translate(0," + y(0) + ")")
             .call(d3.axisBottom(x))
             .selectAll("text")
             .style("text-anchor", "middle")
