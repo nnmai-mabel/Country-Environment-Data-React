@@ -76,14 +76,6 @@ const BarChart = (props) => {
                 .attr("height", Math.abs(y(d.totalValue) - y(0)))
                 .attr("fill", color(d.year - data[0].year));
 
-            // Bar transition
-            bar.transition()
-                .duration(1000)
-                .delay((index + 1) * 200)
-                .attr("width", barWidth * (data.length / 2 - 0.5))
-                .attr("y", y(d.totalValue))
-                .attr("height", height - y(d.totalValue));
-
             // Set bar text
             svg.append('text')
                 .attr("text-anchor", "middle")
@@ -115,7 +107,7 @@ const BarChart = (props) => {
         // Set size for element on x axis
         svg
             .append("g")
-            .attr("transform", "translate(0," + y(0) + ")")
+            .attr("transform", isNaN(y(0)) ? "translate(0," + height + ")" : "translate(0," + y(0) + ")")
             .call(d3.axisBottom(x))
             .selectAll("text")
             .style("text-anchor", "middle")
