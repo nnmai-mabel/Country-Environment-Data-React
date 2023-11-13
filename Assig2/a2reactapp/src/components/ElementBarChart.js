@@ -113,7 +113,7 @@ const BarChart = (props) => {
             .attr('y', - margin.top / 2)
             .attr('text-anchor', 'middle')
             .style('font-size', '1.5em')
-            .text(`Country Emissions by Element Graph`);
+            .text(`Country Emissions by Element's Total Value Graph`);
 
         // Remove the chart 
         return () => {

@@ -28,7 +28,6 @@ const CountryList = ({ }) => {
             .then(data => {
                 setCountryData(data.countryList)
                 setRegionData(data.theRegion)
-                console.log(data.theRegion)
             })
             .catch(err => {
                 console.log(err);
@@ -63,7 +62,13 @@ const CountryList = ({ }) => {
 
             <div className="row justify-content-center">
                 <div className="bg-success py-1 mb-2">
-                    <h2 className="text-center">Countries</h2>
+                    <h2 className="text-center">Countries in {regionData.regionName}</h2>
+                </div>
+
+                {/*Show alert for number of countries matched the search*/}
+                <div className="alert alert-success" role="alert">
+                    {`There ${countryData.length === 1 ? "is" : "are"} ${countryData.length}
+                    ${countryData.length === 1 ? "country that matches" : "countries that match"}  your search in ${regionData.regionName} region.`}
                 </div>
             </div>
 
@@ -83,7 +88,7 @@ const CountryList = ({ }) => {
                 </div>
             </div>
             <div className="row justify-content-center">
-
+                
                 {/*Map through each object to get data*/}
                 {countryData.length > 0 ? (
                     countryData.map((obj) => (
@@ -104,11 +109,7 @@ const CountryList = ({ }) => {
                     )
                     )
                 ) : (
-
-                    //Show alert if no countries matched search
-                    <div className="bg-warning py-1 mb-2">
-                        <h2 className="text-center">No Countries available</h2>
-                    </div>
+                    ""
                 )}
             </div>
         </div >

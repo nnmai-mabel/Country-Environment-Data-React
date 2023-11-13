@@ -1,4 +1,5 @@
 ﻿//Show information of each row for city air quality data
+// props include year, annualMean, temporalCoverage1, annualMeanPm10, annualMeanUgm3, temporalCoverage2, annualMeanPm25, reference, dbYear, status
 const CityAirQualityCell = (props) => {
     return (
         <tr>

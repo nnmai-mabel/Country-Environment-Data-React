@@ -5,7 +5,7 @@
                 Home
             </h2>
             <hr />
-            <p>Home is where heart is</p>
+            <p>This project presents annual temperature, emissions, and air quality data for various countries using ReactJS components and JSON data.</p>
         </div >
     )
 }

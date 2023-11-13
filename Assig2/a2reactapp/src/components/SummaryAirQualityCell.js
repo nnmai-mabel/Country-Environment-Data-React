@@ -3,7 +3,7 @@ const SummaryAirQualityCell = (props) => {
     return (
         <tr>
             <td>{props.year}</td>
-            <td>{props.countryPM10Avg}</td>
+            <td>{Number(props.countryPM10Avg).toFixed(2)}</td>
             <td>{props.countryPM10Min}</td>
             <td>{props.countryPM10Max}</td>
             <td>{Number(props.countryPM25Avg).toFixed(2)}</td>

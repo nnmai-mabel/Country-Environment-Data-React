@@ -13,7 +13,7 @@ const CityAirQualityData = () => {
 
     // useLocation() to get the region and country data from the link leading to this page
     const location = useLocation()
-    const regionCountryData = location.state
+    const regionCountryCityData = location.state
 
     const [cityDetail, setCityDetail] = useState({});
     const [cityAirQualityData, setCityAirQualityData] = useState([]);
@@ -33,27 +33,34 @@ const CityAirQualityData = () => {
 
     return (
         <div className="container">
+            <div className="row justify-content-center">
+                <div className="bg-info py-1 mb-2">
+                    <h2 className="text-center">City Air Quality Data from {regionCountryCityData.airQualityYearRange[0]} to {regionCountryCityData.airQualityYearRange[1]}</h2>
+                </div>
+            </div>
 
             {/*Link to go back to city list of the same country*/}
-            <div className="row mt-3">
-                <Link to={`/CitySearchAndData/${params.regionId}/${params.countryId}`} state={regionCountryData} className="btn btn-warning col-3">Back to Cities</Link>
+            <div className="row">
+                <Link to={`/CitySearchAndData/${params.regionId}/${params.countryId}`} state={regionCountryCityData.regionCountryData} className="btn btn-warning col-3">Back to Cities</Link>
             </div>
 
             {/*Use component to show region and country data on the page*/}
             <RegionCountryData
                 cityId={cityDetail.cityId}
                 cityName={cityDetail.cityName}
-                regionImageUrl={regionCountryData.regionImageUrl}
-                imageUrl={regionCountryData.imageUrl}
-                regionName={regionCountryData.regionName}
-                countryName={regionCountryData.countryName}
-                iso3={regionCountryData.iso3}
-                cityCount={regionCountryData.cityCount}
-                countryCount={regionCountryData.countryCount}
+                regionImageUrl={regionCountryCityData.regionCountryData.regionImageUrl}
+                imageUrl={cityDetail.imageUrl}
+                regionId={cityDetail.regionId}
+                regionName={cityDetail.regionName}
+                countryName={cityDetail.countryName}
+                countryId={cityDetail.countryId}
+                iso3={cityDetail.iso3}
+                cityCount={regionCountryCityData.regionCountryData.cityCount}
+                countryCount={regionCountryCityData.regionCountryData.countryCount}
             />
 
             {/*Table shows city air quality data summary*/}
-            <h4 className="mt-3 mb-3">City Air Quality Data Summary</h4>
+            <h4 className="mt-3 mb-3">Air Quality Data Summary</h4>
             <table className="table table-success">
                 <thead>
                     <tr>
@@ -61,9 +68,9 @@ const CityAirQualityData = () => {
                         <th>Country PM10 Average</th>
                         <th>Country PM10 Min</th>
                         <th>Country PM10 Max</th>
-                        <th>Regional Average</th>
-                        <th>Regional Min</th>
-                        <th>Regional Max</th>
+                        <th>Country PM25 Average</th>
+                        <th>Country PM25 Min</th>
+                        <th>Country PM25 Max</th>
                     </tr>
                 </thead>
                 <tbody>

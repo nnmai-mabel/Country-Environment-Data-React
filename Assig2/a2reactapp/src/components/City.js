@@ -12,7 +12,7 @@ const City = (props) => {
                 <p className="card-text">Air Quality Data Year Range: {`${props.airQualityYearRange[0]} - ${props.airQualityYearRange[1]}`}</p>
 
                 {/*View air quality data of each city*/}
-                <Link to={`/CityAirQualityData/${props.regionId}/${props.countryId}/${props.cityId}`} state={props.regionCountryData} className="btn btn-primary">Air Quality</Link>
+                <Link to={`/CityAirQualityData/${props.regionId}/${props.countryId}/${props.cityId}`} state={props} className="btn btn-primary">Air Quality</Link>
             </div>
         </div>
     )

@@ -56,7 +56,7 @@ const CountryTemperatureData = () => {
             />
 
             {/*Table to show country temperature*/}
-            <h4 className="mb-3">Country Temperature</h4>
+            <h4 className="mb-3 mt-3">Country Temperature</h4>
             <table className="table table-warning">
                 <thead>
                     <tr>
@@ -85,7 +85,6 @@ const CountryTemperatureData = () => {
                             regionalMin={obj.regionalMin != null ? obj.regionalMin : "N/A"}
                             regionalMax={obj.regionalMax != null ? obj.regionalMax : "N/A"}
                         />
-
                     )
                     )}
                 </tbody>

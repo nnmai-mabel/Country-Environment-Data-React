@@ -1,6 +1,6 @@
 ﻿import { Link } from "react-router-dom";
 
-//props contains countryId, countryName, iso3, imageUrl, cityCount, regionId, regionImageUrl, regionName, countryCount
+//props contains countryId, countryName, iso3, imageUrl, cityCount, regionId, regionImageUrl, regionName, countryCount, emissionDataYearRange, temperatureDataYearRange
 const Country = (props) => {
 
     return (

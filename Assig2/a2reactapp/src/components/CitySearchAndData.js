@@ -36,12 +36,7 @@ const CitySearchAndData = ({ }) => {
     }
     return (
         <div className="container">
-            <div className="row py-1 mb-2">
-                <div className="bg-info py-1 mb-2">
-                    <h2 className="text-center">Cities</h2>
-                </div>
-            </div>
-
+            
             {/*Use component to show region and country data on the page*/}
             <RegionCountryData
                 regionImageUrl={regionCountryData.regionImageUrl}
@@ -52,6 +47,18 @@ const CitySearchAndData = ({ }) => {
                 cityCount={regionCountryData.cityCount}
                 countryCount={regionCountryData.countryCount}
             />
+
+            <div className="row py-1 mb-2">
+                <div className="bg-warning py-1 mb-2">
+                    <h2 className="text-center">Cities in {regionCountryData.countryName}</h2>
+                </div>
+            </div>
+
+            {/*Show alert for number of cities matched the search*/}
+            <div className="alert alert-success" role="alert">
+                {`There ${cityData.length === 1 ? "is" : "are"} ${cityData.length}
+                    ${cityData.length === 1 ? "city that matches" : "cities that match"}  your search in ${regionCountryData.countryName} region ${regionCountryData.regionName}.`}
+            </div>
 
             <div className="row py-1 mb-2">
                 <div className="col-md-3 ml-0 mb-2 text-start">
@@ -87,11 +94,7 @@ const CitySearchAndData = ({ }) => {
                     )
                     )
                 ) : (
-
-                    //Show alert if no cities matched search
-                    <div className="bg-warning py-1 mb-2">
-                        <h2 className="text-center">No Cities available matched search</h2>
-                    </div>
+                    ""
                 )}
             </div>
         </div>

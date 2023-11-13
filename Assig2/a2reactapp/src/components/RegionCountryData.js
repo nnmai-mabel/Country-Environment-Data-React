@@ -14,7 +14,7 @@ const RegionCountryData = (regionCountryData) => {
                 {/*Show region and country data*/}
                 <div className="text-overlay">
                     <div className="left-column">
-                        {regionCountryData.cityName !== null ? (
+                        {regionCountryData.cityName !== null && regionCountryData.cityName !== "" ? (
                             <h1>{regionCountryData.cityName}</h1>
                         ) : ""}
                         <h3>{regionCountryData.countryName} {regionCountryData.iso3 ? `(${regionCountryData.iso3})` : ""}</h3>

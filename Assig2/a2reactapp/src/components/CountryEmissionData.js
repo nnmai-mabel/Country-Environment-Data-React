@@ -69,12 +69,12 @@ const CountryEmissionData = () => {
     return (
         <div>
             <div className="row justify-content-center">
-                <div className="bg-success py-1 mb-2">
-                    <h2 className="text-center">Country Emission Data</h2>
+                <div className="bg-info py-1 mb-2">
+                    <h2 className="text-center">Country Emission Data from {regionCountryData.emissionDataYearRange[0]} to {regionCountryData.emissionDataYearRange[1]}</h2>
                 </div>
             </div>
 
-            {/*Linkk back to country list*/}
+            {/*Link back to country list*/}
             <div className="row">
                 <Link to={`/CountryList/${params.regionId}`} className="btn btn-warning col-2">Back to Countries</Link>
             </div>
